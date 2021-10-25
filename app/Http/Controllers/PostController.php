@@ -2,31 +2,47 @@
 
 
 namespace App\Http\Controllers;
+
 use App\Http\Requests\StoreUpdatePost;
-use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 class PostController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
         $posts = Post::latest()->paginate(5);
 
         return view('admin.posts.index', compact('posts'));
     }
 
-    public function create(){
+    public function create()
+    {
         return view('admin.posts.create');
     }
 
-    public function store(StoreUpdatePost $request){
+    public function store(StoreUpdatePost $request)
+    {
+        $data = $request->all();
+        if ($request->image->isValid()) {
 
-        Post::create($request->all());
+            $nameFile = Str::of($request->title)->slug('-') . '.' .$request->image->getClientOriginalExtension();
+
+            $image = $request->image->storeAs('posts', $nameFile, 'public');
+            $data['image'] = $image;
+        }
+
+        Post::create($data);
         return redirect()
             ->route('posts.index')
             ->with('message','Ola!');
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $post = Post::find($id);
         if(!$post){
             return redirect()->route('posts.index');
@@ -34,37 +50,63 @@ class PostController extends Controller
         return view('admin.posts.show', compact('post'));
     }
 
-    public function destroy($id)
-    {
+    public function destroy($id){
         if(!$post = Post::find($id))
-            return redirect()->route('post.index');
-        $post->delete();
+            return redirect()->route('posts.index');
+
+        if(Storage::exists('public/'.$post->image))
+            Storage::delete('public/'.$post->image);
+
+            $post->delete();
+
             return redirect()
-                ->route('posts.index')
-                ->with('message', 'Post Deletado com sucesso');
+            ->route('posts.index')
+            ->with('message', 'Post Deletado com Sucesso');
 
     }
 
     public function edit($id){
+        //$post = Post::where('id', $id)->first();
+
         if(!$post = Post::find($id)){
             return redirect()->back();
         }
-        return view('admin.posts.edit', compact('post'));
+
+        return view ('admin.posts.edit', compact('post'));
     }
-
+    
     public function update(StoreUpdatePost $request, $id){
+        //$post = Post::where('id', $id)->first();
+
         if(!$post = Post::find($id)){
             return redirect()->back();
-
         }
-        $post->update($request->all());
+
+        $data = $request->all();
+
+        if($request->image && $request->image->isValid()){
+            if(Storage::exists( 'public/'.$post->image))
+               Storage::delete('public/'.$post->image);
+
+            $nameFile = Str::of($request->title)->slug('-') . '.'.$request->image->getClientOriginalExtension();
+
+            /* $image = $request->image->storeAs('posts', $nameFile);
+            $data['image'] = $image; */
+            $file = $request->image->storeAs('public/posts',$nameFile);
+            $file = str_replace('public/','',$file);
+            $data['image'] = $file;
+        }
+        $post->update($data);
+
         return redirect()
-            ->route('posts.index')
-            ->with('message','Post Autalizado com Sucesso');
+        ->route('posts.index')
+        ->with('message', 'Post editado com sucesso');
     }
 
     public function search(Request $request)
     {
+
+
 
         $filters = $request->except('_token');
 
@@ -73,7 +115,8 @@ class PostController extends Controller
                             ->paginate(3);
                         return view('admin.posts.index', compact('posts', 'filters'));
     }
-    public function index2(){
+    public function index2()
+    {
 
       /*  $posts = Post::latest()->paginate(5);*/
 
