@@ -1,15 +1,15 @@
-<ul class="nav justify-content-center">
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Frutas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Legumes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Verduras</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Cereais e Grãos</a>
-                </li>
-            </ul>
+<div class="container flex flex-row">
+                
+                    <button><a class="y-2 px-4 font-semibold rounded-lg shadow-md text-white bg-yellow-500 hover:bg-yellow-700 nav-link disabled ml-3.5" href="#">Hortifruti</a>
+                    </button>
+
+                    <button><a class="y-2 px-4 font-semibold rounded-lg shadow-md text-white bg-yellow-500 hover:bg-yellow-700 nav-link disabled ml-3.5" href="#">Peixes</a>
+                    </button>
+
+                    <button><a class="y-2 px-4 font-semibold rounded-lg shadow-md text-white bg-yellow-500 hover:bg-yellow-700 nav-link disabled ml-3.5" href="#">Carnes</a>
+                    </button>
+                    
+                    <button><a class="y-2 px-4 font-semibold rounded-lg shadow-md text-white bg-yellow-500 hover:bg-yellow-700 nav-link disabled ml-3.5" href="#">Naturais</a>
+                    </button>
+</div>
 <!--Este é o menu2-->

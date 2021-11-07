@@ -1,22 +1,14 @@
-<form id='menu1' class="form-inline ">
-                <input style="width: 500px;" class="campo form-control" type="search" placeholder="Pesquisar..."
-                    aria-label="Search">
-                <button class="botao btn btn-light ml-1" type="submit">
-                    <img src="img/magnifying-glass.png">
+<form id='menu1' class="container form-inline  ">
+                <input class="rounded-xl border text-white bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent ml-10" style="width: 300px;" class="campo form-control" type="search" placeholder="Pesquisar..."
+                    aria-label="Search"                  
+                    >
+                <button class="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700" type="submit">
+                    <img src="./storage/img/magnifying-glass.png">
                 </button>
-            </form>
-            <ul class="nav justify-content-end">
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Produtos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Distribuidoras</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Entrar</a>
-                </li>
-            </ul>
-<!--Este é o menu1-->
+            <div class="flex flex-row cursor-pointer sm:flex-row ml-3.5 mt-3.5">
+            <button class="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-yellow-500 hover:bg-yellow-700 ml-3.5">Página Inicial</button>
+            <button class="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700 ml-3.5">Categorias</button>
+            <button class="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-blue-500 hover:bg-blue-700 ml-3.5">Produtores</button>
+            </div>
+            <!--Este é o menu1-->
+</form>

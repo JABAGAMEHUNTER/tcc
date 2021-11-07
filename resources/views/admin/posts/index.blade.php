@@ -23,8 +23,8 @@
         {{ $post->title}}
      [ <a href="  {{route('posts.show', $post->id)}}">Ver</a> |
        <a href="{{  route('posts.edit', $post->id)}}">Edit</a>
-     ]</p>
-
+     ]
+    </p>
 @endforeach
 <hr>
 @if (isset($filters))
