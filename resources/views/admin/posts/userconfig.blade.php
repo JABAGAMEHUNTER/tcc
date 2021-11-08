@@ -10,7 +10,6 @@
         @include('admin.posts._partials.config')
     </nav>
     <nav class="ml-3.5 mr-3.5">
-        
         @include('admin.posts._partials.footer')
     </nav>
 </div>
