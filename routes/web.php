@@ -17,7 +17,7 @@ use App\Http\Controllers\{
 Route::get('/', function () {
     return view('welcome');
 });*/
-Route::get('/', [PostController::class, 'index2'])->name('feira.index');
+Route::get('/', [PostController::class, 'index2'])->name('feira.index')->middleware(['auth'])->name('dashboard');
 Route::any('/posts/search', [PostController::class, 'search'])->name('posts.search');
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
@@ -26,10 +26,10 @@ Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
 Route::delete('/posts/{id}',[PostController::class, 'destroy'])->name('posts.destroy');
 Route::get('posts/edit/{id}', [PostController::class, 'edit'])->name('posts.edit');
 Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
-Route::get('/index2', [PostController::class, 'index2'])->name('feira.index');
-Route::get('/categorias', [PostController::class, 'categorias'])->name('feira.categorias');
-Route::get('/produtores', [PostController::class, 'produtores'])->name('feira.produtores');
-Route::get('/userconfig', [PostController::class, 'userconfig'])->name('feira.userconfig');
+Route::get('/index2', [PostController::class, 'index2'])->name('feira.index')->middleware(['auth'])->name('dashboard');
+Route::get('/categorias', [PostController::class, 'categorias'])->name('feira.categorias')->middleware(['auth'])->name('dashboard');
+Route::get('/produtores', [PostController::class, 'produtores'])->name('feira.produtores')->middleware(['auth'])->name('dashboard');
+Route::get('/userconfig', [PostController::class, 'userconfig'])->name('feira.userconfig')->middleware(['auth'])->name('dashboard');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
