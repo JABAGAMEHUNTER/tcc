@@ -138,4 +138,12 @@ class PostController extends Controller
         return view('admin.posts.produtores');
     }
 
+    
+    public function userconfig()
+    {
+
+      /*  $posts = Post::latest()->paginate(5);*/
+
+        return view('admin.posts.userconfig');
+    }
 }
