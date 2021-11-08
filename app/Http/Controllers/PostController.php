@@ -122,4 +122,20 @@ class PostController extends Controller
 
         return view('admin.posts.index2');
     }
+    public function categorias()
+    {
+
+      /*  $posts = Post::latest()->paginate(5);*/
+
+        return view('admin.posts.categorias');
+    }
+
+    public function produtores()
+    {
+
+      /*  $posts = Post::latest()->paginate(5);*/
+
+        return view('admin.posts.produtores');
+    }
+
 }

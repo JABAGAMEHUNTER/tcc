@@ -1,4 +1,4 @@
-<div class="container flex flex-row">
+<div class="flex flex-row">
                 
                     <button><a class="y-2 px-4 font-semibold rounded-lg shadow-md text-white bg-yellow-500 hover:bg-yellow-700 nav-link disabled ml-3.5" href="#">Hortifruti</a>
                     </button>
