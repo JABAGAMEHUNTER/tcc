@@ -19,6 +19,23 @@
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             </div>
 
+            <!-- Cpf -->
+            <div>
+                <x-label for="cpf" :value="__('Cpf')" />
+
+                <x-input id="cpf" class="block mt-1 w-full" type="text" name="cpf" :value="old('cpf')" required autofocus />
+            </div>
+
+            <!-- Tipo de usuario -->
+            <div>
+                <x-label for="usertipo" :value="__('Tipo de usuário')" />
+                    <div class="form-group"><br>
+                    <label id="usertipo" class="radio-inline"><input type="radio" name="usertipo" value="produtor" :value="old('usertipo')" required autofocus>Produtor</label>
+                    <label id="usertipo" class="radio-inline"><input type="radio" name="usertipo" value="feirante" :value="old('usertipo')" required autofocus>Feirante</label>
+                    </div>    
+            </div>
+
+
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />

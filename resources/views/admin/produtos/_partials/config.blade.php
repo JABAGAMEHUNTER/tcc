@@ -1,3 +1,10 @@
+<div class="py-12">
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 m-5 ">
+    <x-button class="p-6 bg-green-500 border-b border-gray-200">
+    <a href="  {{route('produtos.create')}}">Cadastrar Novo Produto</a>
+    </x-button>
+</div>
+</div>
 <form>
 <div class="container rounded-xl bg-blue-400 text-white" style="width:400px width:10px;"><span class="ml-3.5 lg:ml-96">Configurações do Usuário</span></div>
 <ul class="space-y-6 container mx-auto px-4 lg:ml-96">
@@ -15,7 +22,7 @@
 <div class="container rounded-xl bg-blue-400 text-white"style="width:400px width: 10px;"><span class="ml-3.5 lg:ml-96">Metodo de pagamento</span></div>
     <ul>
         <li class="text-white">
-            PHPLATA
+            CONTA BANCÁRIA
             <div class=" grid grid-cols-3 gap-4">
                 <div class="">
                     Nome

@@ -1,7 +1,7 @@
 
 <div id="cardUser" class=" fixed box-border bg-blue-100 h-25 w-20 p-4 border-4 rounded-xl top-0 right-0">
 <a href="  {{route('feira.userconfig')}}"><img class="h-12 w-12 rounded-full transform scale-25"src="./storage/img/farmer.png" alt="userPhoto"></a>
-    <div class="">Usuario</div>
+    <div class="">{{ Auth::user()->name }}</div>
 </div>
 <form id='menu1' class="form-inline ">
 <div class="flex relative mx-auto w-2/5 max-w-md">
