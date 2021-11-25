@@ -7,7 +7,7 @@
    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>@yield('title') - {{ config('app.name')}}</title>
 </head>
-<body class="bg-green-600">
+<body class="bg-green-200">
 
     <div class="content">
         @yield('content')

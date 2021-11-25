@@ -79,7 +79,7 @@ class ProdutorController extends Controller
     public function update(StoreUpdateProduto $request, $id){
         //$post = Post::where('id', $id)->first();
 
-        if(!$produtos = produtos::find($id)){
+        if(!$produtos = Produto::find($id)){
             return redirect()->back();
         }
 

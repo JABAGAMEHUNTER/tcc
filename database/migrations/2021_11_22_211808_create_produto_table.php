@@ -13,16 +13,19 @@ class CreateProdutoTable extends Migration
      */
     public function up()
     {
-        Schema::create('produto', function (Blueprint $table) {//Cria tabela de produtos
-            $table->id();
-            $table->string('title', 160)->unique();
-            $table->string('image');
-            $table->string('categoria');
-            $table->text('content')->nullable();
-            $table->text('descricao')->nullable();
-            $table->string('valor')->nullable();
-            $table->string('procedencia')->nullable(); 
-            $table->timestamps();  
+        Schema::create('produtos', function (Blueprint $table) {//Cria tabela de produtos
+            $table->increments("id");
+            $table->string("title", 100);
+            $table->string("image")->nullable();
+            $table->enum('categoria',['hortifruti','peixes','carnes','naturais'])->default('hortifruti');
+            $table->integer("categoria_id")->unsigned();
+            $table->text("descricao", 255)->nullable();
+            $table->decimal("valor",10,2)->nullable(); 
+            $table->timestamps();
+            
+            $table->foreign("categoria_id")
+                ->references("id")->on("categorias")
+                ->onDelete("cascade");
         });
     }
 

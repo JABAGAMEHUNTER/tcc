@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-class Categoria extends Rmodel
+class Pedido extends RModel
 {
-    
     
 }
