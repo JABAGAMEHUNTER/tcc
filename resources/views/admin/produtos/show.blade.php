@@ -12,16 +12,18 @@
     @section('content')
     
     
-    <div class="">
-    <ul>
+    <blockquote>
+    <ul class="flex-auto p-6">
     <li><strong>Titulo:</strong>{{ $produtos->title }}</li>
     <li><strong>Conteudo:</strong>{{ $produtos->content }}</li>
     </ul>    
-    </div>
+    </blockquote>
     <form action="{{route('produtos.destroy', $produtos->id) }}" method="post">
         @csrf
+        @can('is_produtor')
         <input  type="hidden" name="_method" value="DELETE">
         <button class="btn mt-1 py-2 px-2 font-semibold rounded-lg shadow-md text-white ml-3.5 decoration-clone bg-gradient-to-b from-yellow-400 to-red-500" type="submit">Deletar o produto</button>
+        @endcan
     </form>
     </div>
     <nav class="ml-3.5 mr-3.5">
