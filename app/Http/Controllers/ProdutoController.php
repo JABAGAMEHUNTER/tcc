@@ -102,9 +102,9 @@ class ProdutoController extends Controller
     public function search(Request $request)
     {
         $filters = $request->except('_token');
-        $produtos = Produto::where('title', 'LIKE', "%$request->search%")
+        $produtos = Produto::where('title', '==', "%$request->search%")
                             ->orWhere('content', 'LIKE', "%$request->search%")
-                            ->paginate(3);
+                            ->paginate(1);
                         return view('admin.produtos.index', compact('produtos', 'filters'));
     }
     public function searchCategoriaHortifruti(Request $request)

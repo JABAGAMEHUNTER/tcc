@@ -21,7 +21,7 @@ Route::get('/', function () {
 });*/
 Route::get('/', [ProdutoController::class, 'index'])->middleware(['auth'])->name('index');//vai para o index
 Route::get('/index', [ProdutoController::class, 'index'])->middleware(['auth'])->name('index');//vai para o index
-Route::any('/produtos/search', [ProdutoController::class, 'search'])->middleware(['auth'])->name('search');//procura item
+Route::any('/produtos/search', [ProdutoController::class, 'search'])->middleware(['auth'])->name('produtos.search');//procura item
     Route::any('/produtos/search/hortifruti', [ProdutoController::class, 'searchCategoriaHortifruti'])->middleware(['auth'])->name('produtos.hortifruti');
     Route::any('/produtos/search/peixes', [ProdutoController::class, 'searchCategoriaPeixes'])->middleware(['auth'])->name('produtos.peixes');
     Route::any('/produtos/search/carnes', [ProdutoController::class, 'searchCategoriaCarnes'])->middleware(['auth'])->name('produtos.carnes');
