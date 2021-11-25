@@ -3,11 +3,11 @@
     <div class="">{{ Auth::user()->name }}</div>
 </div>
 
-<div class="flex relative mx-auto w-2/5 max-w-md">
+<div class="flex relative mx-8 w-2/5 max-w-md">
           <form action="{{route('produtos.search')}}" method="post">
             @csrf
-            <input  type="text" name="search" placeholder="Filtrar:"/>
-            <button type="submit">Pesquisar</button>
+            <input  type="text" name="search" placeholder="Filtrar:" class="rounded-lg"/>
+            <button type="submit" class="btn bg-white p-2 rounded-lg text-white decoration-clone bg-gradient-to-b from-yellow-400 to-red-500">Pesquisar</button>
           </form>
           </div>
           <form id='menu1' class="form-inline">
