@@ -34,6 +34,11 @@ Route::any('/produtos/search', [ProdutoController::class, 'search'])->middleware
     Route::get('produtos/edit/{id}', [ProdutoController::class, 'edit'])->middleware(['auth'])->name('produtos.edit');
     Route::put('/produtos/{id}', [ProdutoController::class, 'update'])->middleware(['auth'])->name('produtos.update');
     
+    Route::match(['get','post'], '/{idproduto}/carrinho/adicionar',[ ProdutoController::class, 'adicionarCarrinho'])
+        ->name('adicionar_carrinho');
+    Route::match(['get','post'], '/carrinho',[ ProdutoController::class, 'verCarrinho'])
+    ->name('ver_carrinho');
+
 
 Route::get('/categorias', [ProdutoController::class, 'categorias'])->middleware(['auth'])->name('categorias');
 

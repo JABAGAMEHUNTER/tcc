@@ -23,7 +23,7 @@ class CreateItensPedidosTable extends Migration
             $table->integer("pedido_id")->unsigned();
 
             $table->foreign("produto_id")
-                ->references("id")->on("produtos")
+                ->references("id")->on("produto")
                 ->onDelete("cascade");
 
                 $table->foreign("pedido_id")

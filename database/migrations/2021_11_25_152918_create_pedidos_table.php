@@ -17,12 +17,12 @@ class CreatePedidosTable extends Migration
             $table->increments("id");
 
             $table->string("status",4);
-            $table->integer("usuario_id")->unsigned();
+            $table->unsignedBigInteger("usuario_id");
 
             $table->timestamps();
             
             $table->foreign("usuario_id")
-                ->references("user")->on("users")
+                ->references("id")->on("users")
                 ->onDelete("cascade");
         });
     }

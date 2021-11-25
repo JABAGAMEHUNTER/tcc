@@ -158,7 +158,24 @@ class ProdutoController extends Controller
         return view('admin.produtos.userconfig');
     }
 
+    public function adicionarCarrinho($idProduto = 0, Request $request){
+        //buscar o produto pelo ID
+        $prod =  Produto::find($idProduto);
 
+        if($prod){
+        //Encontrou o produto
+        //Buscar da sessão o carrinho atual
+            $carrinho = session('cart',[]);
+
+            array_push($carrinho, $prod);
+            session(['cart' => $carrinho]);
+        }
+        return redirect()->route("index");
+    }
+    public function verCarrinho(Request $request){
+        $carrinho = session('cart', []);
+        dd($carrinho);
+    }
 
 
 

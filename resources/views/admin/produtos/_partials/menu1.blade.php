@@ -1,7 +1,8 @@
-<div id="cardUser" class=" fixed box-border bg-blue-100 h-25 w-20 p-4 border-4 rounded-xl top-0 right-0">
+<div id="cardUser" class=" fixed box-border bg-blue-100 h-25 w-20 p-4 border-4 rounded-xl top-0 right-3">
 <a href="  {{route('userconfig')}}"><img class="h-12 w-12 rounded-full transform scale-25"src="./storage/img/farmer.png" alt="userPhoto"></a>
-    <div class="">{{ Auth::user()->name }}</div>
-</div>
+<div class="right-2">{{ Auth::user()->name }}</div>
+  <div class="right-2"><a href="{{route('ver_carrinho')}}"><strong>Carrinho</strong></a></div>
+  </div>
 
 <div class="flex relative mx-8 w-2/5 max-w-md">
           <form action="{{route('produtos.search')}}" method="post">

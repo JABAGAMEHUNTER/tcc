@@ -22,12 +22,11 @@ class CreateEnderecosTable extends Migration
             $table->string("cep");
             $table->string("complemento");
 
-            $table->integer("usuario_id")
-                ->unsigned();
+            $table->unsignedBigInteger("usuario_id");
             $table->timestamps();
 
             $table->foreign("usuario_id")
-                ->references("user")->on("users")
+                ->references("id")->on("users")
                 ->onDelete("cascade");
         });
     }
