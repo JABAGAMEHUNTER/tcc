@@ -14,6 +14,6 @@
 
     
     <nav class="ml-3.5 mr-3.5">
-        @include('admin.produtos._partials.footer')
+    @include('admin.produtos._partials.footer')
     </nav>
 </div>

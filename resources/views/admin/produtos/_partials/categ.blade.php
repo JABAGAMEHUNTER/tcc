@@ -10,3 +10,8 @@
                      </p>
 
 @endforeach
+@if (isset($filters))
+                {{ $produtos->appends($filters)->links()}}
+                @else
+                {{ $produtos->links()}}
+                @endif 

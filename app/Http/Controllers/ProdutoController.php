@@ -174,9 +174,18 @@ class ProdutoController extends Controller
     }
     public function verCarrinho(Request $request){
         $carrinho = session('cart', []);
-        dd($carrinho);
-    }
+        $data = ['cart' => $carrinho];
 
+        return view("admin.produtos.carrinho", $data);
+    }
+    public function excluirCarrinho($indice, Request $request){
+        $carrinho = session('cart',[]);
+        if(isset($carrinho[$indice])){
+            unset($carrinho[$indice]);
+        }
+        session(["cart" => $carrinho]);
+        return redirect()->route("ver_carrinho");
+    }
 
 
 }

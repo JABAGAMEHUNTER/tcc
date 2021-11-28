@@ -9,10 +9,10 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('cadastrar_feirante') }}">
             @csrf
 
-            <!-- Nome -->
+            <!-- Name -->
             <div>
                 <x-label for="nome" :value="__('Nome')" />
 
@@ -40,7 +40,6 @@
                 <x-label for="cpf" :value="__('Cpf')" />
 
                 <x-input id="cpf" class="block mt-1 w-full" type="text" name="cpf" :value="old('cpf')" required autofocus />
-                
             </div>
 
             <!-- Tipo de usuario -->

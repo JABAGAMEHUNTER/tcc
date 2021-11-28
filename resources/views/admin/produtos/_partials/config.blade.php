@@ -15,7 +15,7 @@
     </form>
 </div>
 <form class="py-12">
-<div class="container rounded-xl bg-blue-400 text-white" style="width:400px width:10px;">
+<div class="rounded-xl bg-blue-400 text-white" style="width:400px width:10px">
 <span class="ml-3.5 lg:ml-96">Configurações do Usuário</span></div>
     <button class="p-6 px-4  m-5 mx-auto border-b font-semibold rounded-lg shadow-md text-white bg-blue-500 hover:bg-blue-700" >
     @csrf
@@ -27,8 +27,8 @@
 
 
 </form>
-
-<div class="container rounded-xl bg-blue-400 text-white"style="width:400px width: 10px;"><span class="ml-3.5 lg:ml-96">Metodo de pagamento</span></div>
+<div class="container rounded-xl bg-blue-400 text-white"style="width:400px width:10px;">
+<span class="ml-3.5 lg:ml-96">Metodo de pagamento</span></div>
     <ul>
         <li class="text-white">
             CONTA BANCÁRIA

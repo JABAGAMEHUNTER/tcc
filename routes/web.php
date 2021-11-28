@@ -38,6 +38,12 @@ Route::any('/produtos/search', [ProdutoController::class, 'search'])->middleware
         ->name('adicionar_carrinho');
     Route::match(['get','post'], '/carrinho',[ ProdutoController::class, 'verCarrinho'])
     ->name('ver_carrinho');
+    Route::match(['get','post'], '/{indice}/excluircarrinho',[ ProdutoController::class, 'excluirCarrinho'])
+    ->name('carrinho_excluir');
+    Route::match(['get','post'], '/cadastrar',[ FeiranteController::class, 'cadastrar'])
+    ->name('cadastrar');
+    Route::match(['get','post'], '/feirante/cadastrar',[ FeiranteController::class, 'cadastrarFeirante'])
+    ->name('cadastrar_feirante');
 
 
 Route::get('/categorias', [ProdutoController::class, 'categorias'])->middleware(['auth'])->name('categorias');
