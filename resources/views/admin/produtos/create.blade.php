@@ -9,8 +9,9 @@
    <div class="containter border md:mx-auto py-2 px-4 font-semibold">
     @section('title', 'Novo Produto')
 
-    @section('content')
-    <h1 class="text-white">Cadastrar Novo Produto</h1>
+    @section('mensagem')
+	    
+    <div class="flex justify-center"><h1 class="text-black">Cadastrar Novo Produto</h1></div>
 
     <form action="{{ route('produtos.store') }}" method="post" enctype="multipart/form-data">
         @include('admin.produtos._partials.form')

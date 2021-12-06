@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-<div class="center">
+<div class="container mx-auto">
     <nav class="mt-3.5 mr-3.5">
         @include('admin.produtos._partials.menu1')
     </nav>

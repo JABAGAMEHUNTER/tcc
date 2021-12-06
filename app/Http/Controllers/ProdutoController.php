@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use App\Http\Requests\StoreUpdateProduto;
 use App\Models\Produto;
+use App\Models\Mensagem;
+use App\Http\Requests\StoreUpdateRequest;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,7 +15,7 @@ class ProdutoController extends Controller
         $produtos = Produto::latest()->paginate(5);
         return view('admin.produtos.index', compact('produtos'));
     }
-
+     
     public function create()//fazer postagem de novo produto
     {
         $this->authorize('is_produtor');
@@ -103,6 +102,7 @@ class ProdutoController extends Controller
     {
         $filters = $request->except('_token');
         $produtos = Produto::where('title', '==', "%$request->search%")
+        							 ->orWhere('categoria', 'LIKE', "%$request->search%")
                             ->orWhere('content', 'LIKE', "%$request->search%")
                             ->paginate(4);
                         return view('admin.produtos.index', compact('produtos', 'filters'));
@@ -187,5 +187,25 @@ class ProdutoController extends Controller
         return redirect()->route("ver_carrinho");
     }
 
+	public function chat() {
+    	  //$messages = Produto::latest()->paginate(5);
+    	  $mensagens = Mensagem::latest()->paginate(3);
+        return view('admin.produtos.chat', compact('mensagens'));
+    }
+    
+	public function createMessage()//criar nova mensagem
+    {
+        
+        return view('chat');
+    }
+	    
+    public function enviar(StoreUpdateRequest $request)//salvar nova mensagem
+    {
+     			$data = $request->all();
+     			Mensagem::create($data);
+        		return redirect()
+            ->route('chat')
+            ->with('message','Ola!');   
+    }
 
 }

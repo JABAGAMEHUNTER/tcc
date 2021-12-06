@@ -45,9 +45,12 @@ Route::any('/produtos/search', [ProdutoController::class, 'search'])->middleware
     Route::match(['get','post'], '/feirante/cadastrar',[ FeiranteController::class, 'cadastrarFeirante'])
     ->name('cadastrar_feirante');
 
-
+	Route::get('/chat',[ProdutoController::class, 'chat'])->name('chat');
+	Route::get('/chat/create', [ProdutoController::class, 'createMenssage'])->name('chat.create');//cria novo produto
+	Route::post('/chat', [ProdutoController::class, 'enviar'])->name('enviar');
+	
+	
 Route::get('/categorias', [ProdutoController::class, 'categorias'])->middleware(['auth'])->name('categorias');
-
 Route::get('/produtores', [ProdutoController::class, 'produtores'])->middleware(['auth'])->name('produtores');
 Route::get('/userconfig', [ProdutoController::class, 'userconfig'])->middleware(['auth'])->name('userconfig');
 Route::get('/dashboard', function () {

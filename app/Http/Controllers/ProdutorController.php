@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUpdateProduto;
-use App\Models\Produto;
+use App\Models\Mensagem;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,15 +14,15 @@ class ProdutorController extends Controller
     public function index()
     {
 
-        $produtos = Produto::latest()->paginate(5);
+        $mensagens = Mensagem::latest()->paginate(5);
 
-        return view('admin.produtos.index', compact('produtos'));
+        return view('chat', compact('mensagens'));
     }
 
     public function create()//fazer postagem de novo produto
     {
         $this->authorize('is_admin');
-        return view('admin.produtos.create');
+        return view('chat');
     }
 
     public function store(StoreUpdateProduto $request)//salvar novo produto
@@ -38,7 +38,7 @@ class ProdutorController extends Controller
 
         Produto::create($data);
         return redirect()
-            ->route('produtos.index')
+            ->route('chat')
             ->with('message','Ola!');
     }
 

@@ -38,7 +38,7 @@ Schema::create('users', function (Blueprint $table) {
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->unsignedBigInteger("endereco");
+            $table->unsignedBigInteger("endereco")->nullable();
             $table->timestamps();
             
 
@@ -57,7 +57,7 @@ Schema::create('produto', function (Blueprint $table) {//Cria tabela de produtos
             $table->string("title", 100);
             $table->string("image")->nullable();
             $table->enum('categoria',['hortifruti','peixes','carnes','naturais'])->default('hortifruti');
-            $table->unsignedBigInteger("categoria_id");
+            $table->unsignedBigInteger("categoria_id")->nullable();
             $table->text("content", 255)->nullable();
             $table->decimal("valor",10,2)->nullable();
             $table->string('procedencia',100)->nullable(); 
