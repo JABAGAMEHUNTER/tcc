@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 use App\Models\Produto;
 use App\Models\Mensagem;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreUpdateRequest;
+use App\Http\Requests\StoreUpdateProduto;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 class ProdutoController extends Controller
 {
-    
+
     public function index()
     {
-        $produtos = Produto::latest()->paginate(5);
+        $produtos = Produto::latest()->paginate(6);
         return view('admin.produtos.index', compact('produtos'));
     }
-     
+
     public function create()//fazer postagem de novo produto
     {
         $this->authorize('is_produtor');
@@ -38,7 +40,7 @@ class ProdutoController extends Controller
 
     public function show($id)//listar produtos
     {
-        $produtos = Produto::find($id);
+        $produtos = Produto::oldest()->find($id);
         if(!$produtos){
             return redirect()->route('produtos.index');
         }
@@ -64,12 +66,12 @@ class ProdutoController extends Controller
         //$post = Post::where('id', $id)->first();
 
         if(!$produtos = Produto::find($id)){
-            return redirect()->back();
+           return redirect()->back();
         }
 
         return view ('admin.produtos.edit', compact('produtos'));
     }
-    
+
     public function update(StoreUpdateProduto $request, $id){
         //$post = Post::where('id', $id)->first();
 
@@ -149,7 +151,7 @@ class ProdutoController extends Controller
         return view('admin.produtos.produtores', compact('produtos'));
     }
 
-    
+
     public function userconfig()
     {
 
@@ -189,23 +191,42 @@ class ProdutoController extends Controller
 
 	public function chat() {
     	  //$messages = Produto::latest()->paginate(5);
-    	  $mensagens = Mensagem::latest()->paginate(3);
+    	  $mensagens = Mensagem::oldest()->paginate(18);
+
         return view('admin.produtos.chat', compact('mensagens'));
     }
-    
+
 	public function createMessage()//criar nova mensagem
     {
-        
+
         return view('chat');
     }
-	    
+
     public function enviar(StoreUpdateRequest $request)//salvar nova mensagem
     {
      			$data = $request->all();
      			Mensagem::create($data);
         		return redirect()
             ->route('chat')
-            ->with('message','Ola!');   
+            ->with('message','Ola!');
     }
+//    public function calcularFrete(Request $request) {
+////        $frete = 3,06;
+////        $a = request()->produto->valor;
+////        $b = request()->$frete;
+////        $operation = request()->input('operation');
+////        $result = $calculator->calculate($operation, $a, $b);
+////
+////        return view('calculator', [
+////            'operations' => $calculator->getOperations(),
+////            'result' => $result,
+////            'a' => $a,
+////            'b' => $b,
+////        ]);
+//            dd(request);
+//		}
+//
+//
+//    }
 
 }

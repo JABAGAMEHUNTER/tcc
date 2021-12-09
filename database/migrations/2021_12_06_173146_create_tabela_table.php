@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Migratudo extends Migration
+class CreateTabelaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -21,15 +21,15 @@ class Migratudo extends Migration
             $table->string("cep");
             $table->string("complemento");
 
-        //    $table->unsignedBigInteger("usuario_id");
+            //    $table->unsignedBigInteger("usuario_id");
             $table->timestamps();
-/*
-           $table->foreign("usuario_id")
-                ->references("id")->on("users")
-                ->onDelete("cascade");*/
-            });
+            /*
+                       $table->foreign("usuario_id")
+                            ->references("id")->on("users")
+                            ->onDelete("cascade");*/
+        });
 
-Schema::create('users', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id("id");
             $table->string('nome');
             $table->string('cpf')->unique();
@@ -40,46 +40,46 @@ Schema::create('users', function (Blueprint $table) {
             $table->rememberToken();
             $table->unsignedBigInteger("endereco")->nullable();
             $table->timestamps();
-            
 
 
-           $table->foreign("endereco")
+
+            $table->foreign("endereco")
                 ->references("id")->on("enderecos")
                 ->onDelete("cascade");
         });
-Schema::create('categorias', function (Blueprint $table) {
+        Schema::create('categorias', function (Blueprint $table) {
             $table->id("id");
             $table->string("categoria",100);
             $table->timestamps();
         });
-Schema::create('produto', function (Blueprint $table) {//Cria tabela de produtos
+        Schema::create('produto', function (Blueprint $table) {//Cria tabela de produtos
             $table->increments("id");
             $table->string("title", 100);
             $table->string("image")->nullable();
             $table->enum('categoria',['hortifruti','peixes','carnes','naturais'])->default('hortifruti');
-            $table->unsignedBigInteger("categoria_id");
+            $table->unsignedBigInteger("categoria_id")->nullable();
             $table->text("content", 255)->nullable();
             $table->decimal("valor",10,2)->nullable();
-            $table->string('procedencia',100)->nullable(); 
+            $table->string('procedencia',100)->nullable();
             $table->timestamps();
-            
+
             $table->foreign("categoria_id")
                 ->references("id")->on("categorias")
                 ->onDelete("cascade");
         });
-Schema::create('pedidos', function (Blueprint $table) {
+        Schema::create('pedidos', function (Blueprint $table) {
             $table->increments("id");
 
             $table->string("status",4);
             $table->unsignedBigInteger("usuario_id");
 
             $table->timestamps();
-            
+
             $table->foreign("usuario_id")
                 ->references("id")->on("users")
                 ->onDelete("cascade");
         });
-Schema::create('itens_pedidos', function (Blueprint $table) {
+        Schema::create('itens_pedidos', function (Blueprint $table) {
             $table->increments("id");
             $table->integer("quantidade");
             $table->decimal("valor",10,2);
@@ -92,10 +92,17 @@ Schema::create('itens_pedidos', function (Blueprint $table) {
                 ->references("id")->on("produto")
                 ->onDelete("cascade");
 
-                $table->foreign("pedido_id")
+            $table->foreign("pedido_id")
                 ->references("id")->on("pedidos")
                 ->onDelete("cascade");
         });
+        Schema::create('mensagens', function (Blueprint $table) {
+            $table->increments("id");
+            $table->string("usuario");
+            $table->string("texto",100);
+            $table->timestamps();
+        });
+
     }
 
     /**
@@ -111,5 +118,6 @@ Schema::create('itens_pedidos', function (Blueprint $table) {
         Schema::dropIfExists('produto');
         Schema::dropIfExists('pedidos');
         Schema::dropIfExists('itens_pedidos');
+
     }
 }
